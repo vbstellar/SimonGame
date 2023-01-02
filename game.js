@@ -1,6 +1,8 @@
 const buttonColors = ["red", "blue", "green", "yellow"];
+
 var gamePattern = [];
 var userClickedPattern = [];
+
 var level = 0;
 var gameStart = false;
 
@@ -54,7 +56,24 @@ function answerCheck(currentLevel){
         }
     }else{
         console.log("wrong");
+        playSound("wrong");
+
+        $("body").addClass("game-over");
+        setTimeout(() => {
+            $("body").removeClass("game-over");
+        }, 20);
+
+        $("#level-title").text("Game Over, Press Any Key to Restart");
+        startOver();
     }
+}
+
+function startOver() {
+    gamePattern = [];
+    userClickedPattern = [];
+
+    level = 0;
+    gameStart = false;
 }
 
 $(".btn").on("click", handleClick)
