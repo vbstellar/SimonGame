@@ -14,11 +14,19 @@ function handleClick(event) {
     var userChoosenColor = event.target.id;
     userClickedPattern.push(userChoosenColor);
     playSound(userChoosenColor);
+    AnimtePress(userChoosenColor);
 }
 
 function playSound(name) {
     var audio = new Audio("sounds/"+name+".mp3");
     audio.play();
+}
+
+function AnimtePress(currentColour){
+    $("#"+currentColour).addClass("pressed");
+    setTimeout(() => {
+        $("#"+currentColour).removeClass("pressed");
+    }, 10);
 }
 
 $(".btn").on("click", handleClick)
